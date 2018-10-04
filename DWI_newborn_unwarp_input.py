@@ -14,7 +14,7 @@ import nipype.pipeline.engine as pe
 from nipype.interfaces import fsl
 
 
-# In[2]:
+# In[3]:
 
 
 #Set filepaths and variables
@@ -30,7 +30,7 @@ print(len(index1))
 workflow_dir = '/Volumes/iang/active/BABIES/BABIES_diffusion/workflows'
 
 
-# In[3]:
+# In[5]:
 
 
 sub = input('Please enter IDs for subs you wish to run:  ')
@@ -44,7 +44,7 @@ pe0_bvec = destfp + '/' + sub + '/raw/DTI_pe0_ms103.bvec'
 pe0_bval = destfp + '/' + sub + '/raw/DTI_pe0_ms103.bval'
 
 
-# In[4]:
+# In[6]:
 
 
 def check_bvecs(file):
@@ -58,9 +58,10 @@ def check_bvecs(file):
 
 output = check_bvecs(dest +'raw/DTI_pe0_ms103.nii.gz')
 print(output)
-file = open(dest + "info.txt","w")
-file.write(output)
-file.close()
+
+# file = open(dest + "info.txt","w")
+# file.write(output)
+# file.close()
 
 
 # In[ ]:
@@ -85,6 +86,13 @@ fslmerge = fsl.Merge(in_files = [dest + 'bu_pe0.nii.gz', dest + 'bd_pe1.nii.gz']
 print('Working on topup for {}'.format(sub))
 dest = destfp + '/' + sub + '/'
 topup = fsl.TOPUP(in_file = dest + 'bud_nwf.nii.gz', encoding_file = params, config = 'b02b0.cnf', out_base = dest + 'DTI_topup_nwf').run()
+
+
+# In[9]:
+
+
+output_nwf = check_bvecs(dest +'/DTI_pe0_unwarped_nwf.nii.gz')
+print(output_nwf)
 
 
 # In[ ]:
@@ -129,7 +137,7 @@ bet = fsl.BET(in_file = dest + 'DTI_pe0_unwarped_nwf.nii.gz', mask = True, out_f
 
 print('Performing eddy correction for {} pe0'.format(sub))
 dest = destfp + '/' + sub + '/'
-eddy = fsl.Eddy(in_file = dest + 'DTI_pe0_unwarped_stripped.nii.gz', in_acqp = params, in_bval = dest + 'raw/DTI_pe0_ms103.bval', in_bvec = dest + 'raw/DTI_pe0_ms103.bvec',
+eddy = fsl.Eddy(in_file = dest + 'DTI_pe0_unwarped_nwf.nii.gz', in_acqp = params, in_bval = dest + 'raw/DTI_pe0_ms103.bval', in_bvec = dest + 'raw/DTI_pe0_ms103.bvec',
                                         in_index = index105, in_mask = dest + 'DTI_pe0_unwarped_stripped_mask.nii.gz',
                                         out_base = dest + 'DTI_unwarped_eddy').run()
 

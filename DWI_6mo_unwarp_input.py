@@ -129,7 +129,7 @@ bet = fsl.BET(in_file = dest + 'DTI_pe0_unwarped_nwf.nii.gz', mask = True, out_f
 
 print('Performing eddy correction for {} pe0'.format(sub))
 dest = destfp + '/' + sub + '/'
-eddy = fsl.Eddy(in_file = dest + 'DTI_pe0_unwarped_stripped.nii.gz', in_acqp = params, in_bval = dest + 'raw/DTI_pe0_ms103.bval', in_bvec = dest + 'raw/DTI_pe0_ms103.bvec',
+eddy = fsl.Eddy(in_file = dest + 'DTI_pe0_unwarped_nwf.nii.gz', in_acqp = params, in_bval = dest + 'raw/DTI_pe0_ms103.bval', in_bvec = dest + 'raw/DTI_pe0_ms103.bvec',
                                         in_index = index105, in_mask = dest + 'DTI_pe0_unwarped_stripped_mask.nii.gz',
                                         out_base = dest + 'DTI_unwarped_eddy').run()
 
