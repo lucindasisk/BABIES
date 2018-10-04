@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[44]:
+# In[64]:
 
 
 from nibabel import load
@@ -11,16 +11,16 @@ from glob import glob
 from datetime import date
 
 
-# In[61]:
+# In[66]:
 
 
-timepoint = input('Which timepoint are you checking? Enter "Newborn" or "6month":  ')
+timepoint = input('Which timepoint are you checking? Enter "Newborn" or "6-month":  ')
 fp = '/Volumes/iang/active/BABIES/BABIES_diffusion/subjsDir/'+ timepoint
 sublist = Series(glob(fp + '/*-*-T*')).str.replace(fp+'/', '')
 subs = sublist.sort_values()
 
 
-# In[62]:
+# In[67]:
 
 
 final = DataFrame(columns = ['ID', '#bvals', '#bvecs', 'NIFTI length'])
