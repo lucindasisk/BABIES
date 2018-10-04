@@ -14,13 +14,13 @@ import nipype.pipeline.engine as pe
 from nipype.interfaces import fsl
 
 
-# In[9]:
+# In[2]:
 
 
 #Set filepaths and variables
-fp = '/Volumes/iang/active/BABIES/BABIES_Crossectional/BABIES_Crossectional-T1'
+fp = '/Volumes/iang/active/BABIES/BABIES_Longitudinal/BABIES_Longitudinal-T2'
 home = '/Volumes/iang/active/BABIES/BABIES_diffusion/subjsDir/'
-destfp = '/Volumes/iang/active/BABIES/BABIES_diffusion/subjsDir/6-month'
+destfp = '/Volumes/iang/active/BABIES/BABIES_diffusion/subjsDir/Newborn'
 params = home + 'acq_params.txt'
 index = home + 'index.txt'
 index104 = home + 'index104.txt'
@@ -30,7 +30,7 @@ print(len(index1))
 workflow_dir = '/Volumes/iang/active/BABIES/BABIES_diffusion/workflows'
 
 
-# In[ ]:
+# In[3]:
 
 
 sub = input('Please enter IDs for subs you wish to run:  ')
@@ -44,7 +44,7 @@ pe0_bvec = destfp + '/' + sub + '/raw/DTI_pe0_ms103.bvec'
 pe0_bval = destfp + '/' + sub + '/raw/DTI_pe0_ms103.bval'
 
 
-# In[ ]:
+# In[4]:
 
 
 def check_bvecs(file):
