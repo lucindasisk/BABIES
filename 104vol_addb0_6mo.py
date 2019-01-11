@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[26]:
+# In[1]:
 
 
 from nibabel import load
@@ -14,12 +14,12 @@ import nipype.pipeline.engine as pe
 from nipype.interfaces import fsl
 
 
-# In[27]:
+# In[2]:
 
 
-fp = '/Volumes/iang/active/BABIES/BABIES_Longitudinal/BABIES_Longitudinal-T2'
+fp = '/Volumes/iang/active/BABIES/BABIES_Crossectional/BABIES_Crossectional-T1'
 home = '/Volumes/iang/active/BABIES/BABIES_diffusion/subjsDir/'
-destfp = '/Volumes/iang/active/BABIES/BABIES_diffusion/subjsDir/Newborn'
+destfp = '/Volumes/iang/active/BABIES/BABIES_diffusion/subjsDir/6-month'
 params = home + 'acq_params.txt'
 index = home + 'index.txt'
 index104 = home + 'index104.txt'
@@ -27,7 +27,7 @@ index105 = home + 'index105.txt'
 index1 = pd.read_csv(home + 'index105.txt', sep = " ", header = None)
 
 
-# In[28]:
+# In[3]:
 
 
 sub = input('Please enter IDs for subs you wish to run:  ')
@@ -41,7 +41,7 @@ pe0_bvec = destfp + '/' + sub + '/raw/DTI_pe0_ms103.bvec'
 pe0_bval = destfp + '/' + sub + '/raw/DTI_pe0_ms103.bval'
 
 
-# In[30]:
+# In[4]:
 
 
 def check_bvecs(file):
@@ -63,7 +63,7 @@ print(output)
 # file.close()
 
 
-# In[16]:
+# In[5]:
 
 
 def add_b0_bvec():
@@ -75,7 +75,7 @@ def add_b0_bvec():
     bvec.to_csv(dest + 'raw/DTI_pe0_ms103.bvec', header = None, index = False, sep = ' ', index_label=False, float_format='%.4f')
 
 
-# In[17]:
+# In[6]:
 
 
 def add_b0_bval():
@@ -87,7 +87,7 @@ def add_b0_bval():
     bval.to_csv(dest + 'raw/DTI_pe0_ms103.bval', header = None, index = False, sep = ' ', index_label=False)
 
 
-# In[18]:
+# In[7]:
 
 
 def fix_b0_nifti():
@@ -98,7 +98,7 @@ def fix_b0_nifti():
     
 
 
-# In[32]:
+# In[ ]:
 
 
 bvec_len = input('Do the nifti and bvec file contain 104 volumes instead of 105? Enter Yes or No:  ')
@@ -120,7 +120,7 @@ else:
    
 
 
-# In[33]:
+# In[ ]:
 
 
 finalq = input('Are bvec, index, and nifti all now 105? Enter Yes or No:  ')
